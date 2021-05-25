@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 
     system("mkdir temp");
 
-    char *firstName = getFileName(0, 0);
+    char *firstName = getFileName(0, 1);
     if (!createFile(firstName)) {
         free(firstName);
         printf("Ошибка открытия файла!\n");
@@ -53,8 +53,8 @@ int main(int argc, char *argv[]) {
     int len = 0;
 
     for (;;) {
-        char *fileName = getFileName(len, 1);
-        char *nextFileName = getFileName(len + 1, 0);
+        char *fileName = getFileName(len, 0);
+        char *nextFileName = getFileName(len + 1, 1);
         if (symlink(fileName, nextFileName)) {
             free(fileName);
             free(nextFileName);
@@ -82,4 +82,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
